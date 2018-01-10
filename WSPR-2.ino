@@ -89,13 +89,13 @@ void loop() {
   else if (mode == Mode::INTRA_SYMBOL) {
     mode = Mode::SYMBOL;
     lastSymbolStartStamp = now;
-    Serial.print(symbolPtr);
-    Serial.print(": ");
+    //Serial.print(symbolPtr);
+    //Serial.print(": ");
     double symbolFreq = freq + ((double)tx_buffer[symbolPtr] * tone_spacing);
-    Serial.print(tx_buffer[symbolPtr]);
-    Serial.print(" ");
-    Serial.print(symbolFreq);
-    Serial.print("\n");
+    //Serial.print(tx_buffer[symbolPtr]);
+    //Serial.print(" ");
+    //Serial.print(symbolFreq);
+    //Serial.print("\n");
     // This is where the AD9850 actually gets programmed
     DDS.setfreq(symbolFreq, 0);
   } 
@@ -107,7 +107,6 @@ void loop() {
       // Check to see if the entire message has bee=n sent
       if (symbolPtr >= symbol_count) {
         mode = Mode::IDLE;
-        Serial.println();
         Serial.println("Completed WSPR message");
         digitalWrite(LED0_PIN,0);
         DDS.down();
