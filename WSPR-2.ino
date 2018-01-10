@@ -66,6 +66,7 @@ void setup() {
   // Initialze the AD9850
   DDS.begin(W_CLK_PIN,FQ_UD_PIN,DATA_PIN,RESET_PIN);
   DDS.down();
+  
   // Build the WSPR message and leave it in the transmit buffer
   jtencode.wspr_encode(call,loc,dbm,tx_buffer); 
 }
@@ -109,6 +110,7 @@ void loop() {
         Serial.println();
         Serial.println("Completed WSPR message");
         digitalWrite(LED0_PIN,0);
+        DDS.down();
       }
     }
   }
