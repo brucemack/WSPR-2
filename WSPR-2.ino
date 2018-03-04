@@ -90,9 +90,15 @@ void setup() {
   Serial.print(minute);
   Serial.print(":");
   Serial.println(second);
-  // Set the last transmission stamp to to the top of the last even minute
+  // Set the last transmission stamp to to the top of the next even minute
   // so that we are properly synchronized.
-  lastTransmitStamp = millis() - ((int)minute * 60 * 1000) - ((int)second * 1000);
+  // 1. Move foreward from now to the top of the next minute
+  lastTransmitStamp = millis() + (60 - (int)second) * 1000;
+  // 2. If this is an even minute, skip forward another minute
+  if (minute % 2 == 0) {
+    lastTransmitStamp += 60 * 1000;
+  }
+  Serial.println(lastTransmitStamp - millis());
 }
 
 void loop() {
@@ -143,6 +149,7 @@ void loop() {
 
   // When pressed, reset the clock
   if (debouncedButton.getState()) {
+    Serial.println("Push");
     mode = Mode::IDLE;
     // Force the time to now minus four minutes
     lastTransmitStamp = now - FOUR_MINUTES_MS;
