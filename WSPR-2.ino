@@ -2,9 +2,9 @@
 // Bruce MacKinnon KC1FSZ
 // 28 November 2018
 //
-#include <JTEncode.h>  // 
-#include <AD9850.h>    // http://github.com/F4GOJ/AD9850
-#include <DebouncedSwitch.h> // 
+#include <JTEncode.h>  // Get this from: https://github.com/etherkit/JTEncode
+#include <AD9850.h>    // Get this from: http://github.com/F4GOJ/AD9850
+#include <DebouncedSwitch.h> // Get this from: https://github.com/brucemack/KC1FSZ_Utils
 
 // =====================================================================
 // CUSTOMIZE HERE:
